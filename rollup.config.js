@@ -5,11 +5,11 @@ export default {
   input: './src/index.js',
   output: [
     {
-      file: 'dist/index.esm.js',
+      file: 'dist/eventdelegation.esm.js',
       format: 'es'
     },
     {
-      file: 'dist/index.umd.js',
+      file: 'dist/eventdelegation.umd.js',
       name: 'eventdelegation',
       format: 'umd',
       globals: {
