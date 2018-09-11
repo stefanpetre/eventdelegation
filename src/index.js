@@ -67,6 +67,7 @@ function defineCurrentTarget(event, getter) {
 function dispatch(event) {
 
     const events = event.eventPhase === 1 ? captureEvents : bubbleEvents;
+    console.log(this, event.target, event.currentTarget);
 
     const selectorsEl = events.get(event.currentTarget);
     if (!selectorsEl) {
@@ -95,7 +96,7 @@ function dispatch(event) {
             if (immediatePropagationStopped.get(event))
                 break;
             if (matched.observers[j].data.call) {
-                matched.observers[j].data.call(matched.node, event);
+                matched.observers[j].data.call(this, event);
             } else if (matched.observers[j].data.handleEvent) {
                 event.matched = matched.node;
                 matched.observers[j].data.handleEvent.call(matched.observers[j].data, event);
