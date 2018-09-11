@@ -107,7 +107,7 @@ function dispatch(event) {
     defineCurrentTarget(event);
 }
 
-const delegation = {
+const delegate = {
 
     on(el, type, selector, listener, options = {}) {
         const capture = options.capture ? true : false;
@@ -159,4 +159,4 @@ const delegation = {
     }
 };
 
-export default delegation;
+export default delegate;
