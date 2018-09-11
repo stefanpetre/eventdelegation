@@ -109,6 +109,15 @@ function dispatch(event) {
 
 const delegate = {
 
+    /**
+     * Add event to specified element and trigger on its children based on selector
+     * 
+     * @param {HTMLElement} el 
+     * @param {String} type 
+     * @param {String} selector 
+     * @param {Function|EventListener} listener 
+     * @param {Object} options 
+     */
     on(el, type, selector, listener, options = {}) {
         const capture = options.capture ? true : false;
         const events = capture ? captureEvents : bubbleEvents;
@@ -127,6 +136,15 @@ const delegate = {
         selectors.add(selector, listener);
     },
 
+    /**
+     * Remove previous attached event from element
+     * 
+     * @param {HTMLElement} el 
+     * @param {String} type 
+     * @param {String} selector 
+     * @param {Function|EventListener} listener 
+     * @param {Object} options 
+     */
     off(el, type, selector, listener, options = {}) {
         const capture = options.capture ? true : false;
         const events = capture ? captureEvents : bubbleEvents;
@@ -148,6 +166,12 @@ const delegate = {
         el.removeEventListener(type, dispatch, capture);
     },
 
+    /**
+     * 
+     * @param {HTMLElement} target 
+     * @param {String} type 
+     * @param {Object} detail 
+     */
     trigger(target, type, detail) {
         return target.dispatchEvent(
             new CustomEvent(type, {
