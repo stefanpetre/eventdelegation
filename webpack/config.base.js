@@ -1,32 +1,24 @@
 const webpack = require('webpack');
 
-module.exports = {
-    entry: {
-        app: './src/index.js',
-    },
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+module.exports = {
+    entry: './src/index.js',
+    plugins: [
+        new CleanWebpackPlugin(['dist'])
+    ],
+    externals: {
+        "selector-set": 'SelectorSet'
+    },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        exclude: /node_modules/,
-                        loader: "html-loader"
-                    }
-                ]
+                use: {
+                    loader: "babel-loader"
+                }
             }
-        ],
-    },
-
-    plugins: [
-        new webpack.EnvironmentPlugin([
-            'NODE_ENV',
-        ]),
-    ],
+        ]
+    }
 };

@@ -2,42 +2,30 @@ const webpack = require('webpack');
 
 const path = require('path');
 
+const merge = require('webpack-merge');
+const base = require('./config.base.js');
+
 const config = [
-    {
-        entry: './src/index.js',
-
+    merge(base, {
+        mode: 'none',
         output: {
             path: path.resolve(__dirname, '../dist'),
-            filename: 'eventdelegation.udm.js',
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: 'babel-loader',
-                }
-            ],
-        }
-    },
-    {
-        entry: './src/index.js',
-
-        output: {
-            path: path.resolve(__dirname, '../dist'),
-            filename: 'eventdelegation.esm.js',
+            filename: 'eventdelegation.js',
             libraryTarget: 'umd'
         },
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: 'babel-loader',
-                }
-            ],
+        devtool: 'source-map',
+        optimization: {
+            minimizer: []
         }
-    }
+    }),
+    merge(base, {
+        mode: 'production',
+        output: {
+            path: path.resolve(__dirname, '../dist'),
+            filename: 'eventdelegation.min.js',
+        },
+        devtool: 'source-map'
+    })
 ];
 
 
