@@ -67,7 +67,6 @@ function defineCurrentTarget(event, getter) {
 function dispatch(event) {
 
     const events = event.eventPhase === 1 ? captureEvents : bubbleEvents;
-    console.log(this, event.target, event.currentTarget);
 
     const selectorsEl = events.get(event.currentTarget);
     if (!selectorsEl) {
