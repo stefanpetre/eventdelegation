@@ -15,7 +15,8 @@ const config = [
         },
         devtool: 'source-map',
         optimization: {
-            minimizer: []
+            minimizer: [],
+            runtimeChunk: false
         }
     }),
     merge(base, {
